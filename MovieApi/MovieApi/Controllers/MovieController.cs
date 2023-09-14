@@ -93,6 +93,9 @@ namespace MovieApi.Controllers
         [HttpGet("/get-movies")]
         public IActionResult GetAllMovies(int pageNumber)
         {
+            if (pageNumber == 0)
+                pageNumber = 1;
+
             int start = (pageNumber - 1) * itemsPerPage;
             int end = itemsPerPage;
 
