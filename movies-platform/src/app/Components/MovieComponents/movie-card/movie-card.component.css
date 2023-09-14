@@ -1,0 +1,12 @@
+.card {
+    width: 18rem;
+    cursor: pointer;
+}
+
+.img-poster {
+    height: 350px;
+}
+
+.delete-btn {
+    float: right;
+}

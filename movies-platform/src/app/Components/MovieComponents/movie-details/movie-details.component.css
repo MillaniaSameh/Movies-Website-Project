@@ -1,0 +1,83 @@
+.no-movie-container {
+    display: flex;
+    justify-content: center;
+    height: 30vh;
+    align-items: center;
+}
+
+.movie-container {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 50px;
+
+    justify-content: center;
+    margin: auto;
+    margin-top: 50px;
+    width: 85%;
+}
+
+.poster-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.movie-image {
+    height: 400px;
+    width: auto;
+    border-radius: 20px;
+}
+
+.delete-button {
+    margin-top: 20px;
+}
+
+.movie-data {
+    width: 60%;
+}
+
+.movie-description {
+    word-wrap: break-word
+}
+
+.cast {
+    margin-top: 18px;
+}
+
+.spinner-border {
+    border-width: 0.4rem;
+    width: 6rem; 
+    height: 6rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ------------------ reviews-section ------------------ */
+
+.reviews-section {
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-bottom: 15px;
+}
+
+.rating-stars {
+    color: yellow;
+}
+
+.add-review {
+    float: right;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 750px) {
+    .movie-data {
+        width: 100%;
+    }
+
+    .cast {
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,26 @@
+.actor-container {
+    display: flex;
+}
+
+.remove-button {
+    margin-right: 15px;
+}
+
+.text-danger {
+    margin-top: 5px;
+}
+
+.add-button {
+    float: right;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+
+.dropdown-menu {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}

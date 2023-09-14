@@ -1,0 +1,65 @@
+<div class="addmovie-container">
+  
+  <div class="spinner-border text-primary loading-spinner" role="status" *ngIf="fetchRequestSent">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+
+  <div class="addmovie-form" *ngIf="!fetchRequestSent">
+
+    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">General</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="actor-tab" data-bs-toggle="tab" data-bs-target="#actor" type="button" role="tab" aria-controls="actor" aria-selected="false">Actors</button>
+      </li>
+      <li class="nav-item" role="presentation" [hidden]="hideAddButton">
+        <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="false">Reviews</button>
+      </li>
+    </ul>
+
+    <form [formGroup]="movieDataForm">
+      
+      <div class="tab-content" id="tabContent">
+        <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab" tabindex="0">
+          <app-general-info [generalInfoForm]="movieDataForm" (imagePath)="getImagePath($event)"></app-general-info>
+        </div>
+        <div class="tab-pane fade" id="actor" role="tabpanel" aria-labelledby="actor-tab" tabindex="0">
+          <app-actors-list [actorsForm]="movieDataForm" ></app-actors-list>
+        </div>
+        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
+          <app-review-movie [reviewsForm]="movieDataForm"></app-review-movie>
+        </div>
+      </div>
+      
+      <br>
+
+      <button type="button" class="btn btn-primary" (click)="addMovie()" [hidden]="hideAddButton || addRequestSent" [disabled]="!movieDataForm.valid">Add movie</button>
+      <button class="btn btn-primary" type="button" disabled [hidden]="!addRequestSent">
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        {{" "}}
+        <span role="status">Adding...</span>
+      </button>
+
+      <button type="button" class="btn btn-primary" (click)="updateMovie()" [hidden]="!hideAddButton || editRequestSent" [disabled]="updateMovieValid()">Edit movie</button>
+      <button class="btn btn-primary" type="button" disabled [hidden]="!editRequestSent">
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        {{" "}}
+        <span role="status">Editing...</span>
+      </button>
+
+    </form>
+
+    <br>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorOccurred">
+      <strong>Error:</strong> Movie does not exist. Try adding a new one!
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="movieId">
+      <strong>Error:</strong> Movie already exists. Check it out <a routerLink="/Movie/{{movieId}}">here</a>.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    
+  </div>
+</div>

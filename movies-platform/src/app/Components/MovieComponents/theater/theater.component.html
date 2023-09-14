@@ -1,0 +1,31 @@
+<div class="search-bar">
+  <form [formGroup]="searchForm" class="input-group mb-3 search-form">
+    <!-- <input type="text" formControlName="term" class="form-control" placeholder="Search for a movie" aria-label="Search for a movie" aria-describedby="button-addon2" [class.is-invalid] = "title?.invalid && title?.touched"> -->
+    <input type="text" formControlName="term" class="form-control" placeholder="Search for a movie">
+    <button class="btn btn-outline-secondary" (click)="search()">Go</button>
+  </form>
+</div>
+
+<div class="no-content-container" *ngIf="movies && movies.length <= 0">
+  <h3>No movies to show.</h3>
+  <h3>Be the first to <a routerLink="/AddMovie">add</a> some!</h3>
+</div>
+
+<div class="no-content-container" *ngIf="error">
+  <h3>Something went wrong.</h3>
+  <h3>Please try again later!</h3>
+</div>
+
+<div class="theater-container movie-container">
+  <ng-container *ngIf="!requestSent">
+    <ng-container *ngFor="let movie of movies">
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div class="theater-container" *ngIf="(requestSent && !error) || isLoadingMovies">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

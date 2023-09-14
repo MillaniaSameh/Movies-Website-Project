@@ -1,0 +1,33 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.login-form {
+    padding: 30px;
+    padding-bottom: 20px;
+    width: 500px;
+}
+
+.text-danger {
+    margin-top: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+    .form-container {
+        margin-top: 20px;
+    }
+
+    .login-form {
+        width: 90%;
+    }
+
+    .card {
+        border: none;
+    }
+}

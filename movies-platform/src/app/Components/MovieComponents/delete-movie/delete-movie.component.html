@@ -1,0 +1,22 @@
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+  <i class="bi bi-trash-fill"></i>
+</button>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Deleting "{{movieTitle}}"</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{userMessage}}
+      </div>
+      <div class="modal-footer justify-content-start">
+        <button type="button" class="btn btn-success" (click)="deleteMovie()" [hidden]="!movieId">Delete</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" [hidden]="!movieId">Close</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" [hidden]="movieId" (click)="returnToHome()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>

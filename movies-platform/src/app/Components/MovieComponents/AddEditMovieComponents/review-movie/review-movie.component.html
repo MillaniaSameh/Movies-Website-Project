@@ -1,0 +1,14 @@
+<form [formGroup]="reviewsForm">
+  <div formGroupName="reviews">
+    <div class="mb-3">
+      <label for="inputReview" class="form-label">Share your opinion</label>
+      <textarea formControlName="comment" class="form-control" [class.is-invalid] = "review.invalid && review.touched"></textarea>
+      <div [hidden]="review.valid || review.untouched">
+        <p class="text-danger" *ngIf="review.invalid && review.touched">
+          A comment should be provided before adding your review.
+        </p>
+      </div>
+      <p-rating formControlName="rating"></p-rating>
+    </div>
+  </div>
+</form>

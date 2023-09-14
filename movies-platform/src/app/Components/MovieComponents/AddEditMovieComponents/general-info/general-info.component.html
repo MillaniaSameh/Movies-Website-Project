@@ -1,0 +1,44 @@
+<div [formGroup]="generalInfoForm">
+  <div class="mb-3">
+    <label for="inputTitle" class="form-label">Movie Title</label>
+    <input type="text" formControlName="title" class="form-control" id="inputTitle" [class.is-invalid] = "title?.invalid && title?.touched">
+    <div [hidden]="title?.valid || title?.untouched">
+      <p class="text-danger" *ngIf="title?.errors?.['required']">
+        Movie title is required
+      </p>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="inputDescription" class="form-label">Description</label>
+    <textarea type="text" formControlName="description" class="form-control" id="inputDescription" [class.is-invalid] = "description?.invalid && description?.touched"></textarea>
+    <div [hidden]="description?.valid || description?.untouched">
+      <p class="text-danger" *ngIf="description?.errors?.['required']">
+        Movie description is required
+      </p>
+      <p class="text-danger" *ngIf="description?.errors?.['maxlength']">
+        Max length is 500 characters
+      </p>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="inputYear" class="form-label">Release Year</label>
+    <input type="number" formControlName="releaseYear" class="form-control" id="inputYear" [class.is-invalid] = "releaseYear?.invalid && releaseYear?.touched">
+    <div [hidden]="releaseYear?.valid || releaseYear?.untouched">
+      <p class="text-danger" *ngIf="releaseYear?.errors?.['required']">
+        Release year is required
+      </p>
+      <p class="text-danger" *ngIf="releaseYear?.errors?.['pattern']">
+        Release year should be between 1800 and 2060
+      </p>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="inputPoster" class="form-label">Poster</label>
+    <input type="file" formControlName="poster" class="form-control" id="inputPoster" (change)="onFileChange($event)" [class.is-invalid] = "poster?.invalid && poster?.touched">
+    <div [hidden]="poster?.valid || poster?.untouched">
+      <p class="text-danger" *ngIf="poster?.errors?.['required']">
+        Movie poster is required
+      </p>
+    </div>
+  </div>
+</div>

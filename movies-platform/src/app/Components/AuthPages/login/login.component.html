@@ -1,0 +1,39 @@
+<div class="form-container">
+  <div class="card login-form" >
+    <form [formGroup]="loginForm">
+      <div class="mb-3">
+        <label for="inputEmail" class="form-label">Email address</label>
+        <input type="email" formControlName="email" class="form-control" id="inputEmail" [class.is-invalid] = "email?.invalid && email?.touched">
+        <div [hidden]="email?.valid || email?.untouched">
+          <p class="text-danger" *ngIf="email?.errors?.['required']">
+            Email address is required
+          </p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="inputPassword" [class.is-invalid] = "password?.invalid && password?.touched">
+        <div [hidden]="password?.valid || password?.untouched">
+          <p class="text-danger" *ngIf="password?.errors?.['required']">
+            Password is required
+          </p>
+        </div>
+      </div>
+
+      <p>Don't have an account? <a routerLink="/Register">Register</a></p>
+
+      <p class="text-danger">
+        {{errorMessage}}
+      </p>
+
+      <button type="submit" class="btn btn-primary" (click)="handleLogin()" [hidden]="loginRequestSent" [disabled]="!loginForm.valid">Login</button>
+
+      <button class="btn btn-primary" type="button" disabled [hidden]="!loginRequestSent">
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        {{" "}}
+        <span role="status">Loading...</span>
+      </button>
+
+    </form>
+  </div>
+</div>

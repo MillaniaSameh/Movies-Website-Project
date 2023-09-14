@@ -1,0 +1,13 @@
+.text-danger {
+    margin-top: 5px;
+}
+
+.add-button {
+    float: right;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    margin-bottom: 10px;
+}

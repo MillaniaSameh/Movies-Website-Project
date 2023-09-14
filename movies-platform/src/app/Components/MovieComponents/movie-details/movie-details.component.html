@@ -1,0 +1,80 @@
+<div class="no-movie-container" *ngIf="error">
+  <div class="alert alert-danger" role="alert">
+    <strong>Movie does not exist.</strong> Try <a routerLink="/AddMovie">adding</a> a new one!
+  </div>
+</div>
+
+<div class="movie-container" *ngIf="!error">
+
+  <div class="spinner-border text-primary" role="status" *ngIf="requestSent">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+
+  <!-- <ng-container *ngIf="!requestSent"> -->
+  <ng-container *ngIf="movie && !requestSent">
+    <div class="poster-section">
+      <img src="assets/images/{{movie.poster}}" class="movie-image" alt={{movie.title}}>
+      <br>
+      <br>
+      <button class="btn btn-primary" routerLink="/AddMovie/{{movie.movieId}}"><i class="bi bi-pencil-square"></i></button>
+      {{" "}}
+      <app-delete-movie class="delete-button" [movieId]="movie.movieId" [movieTitle]="movie.title"></app-delete-movie>
+    </div>
+
+    <div class="movie-data">
+      <h1>{{movie.title}}, {{movie.releaseYear}}</h1>
+      <div class="movie-description">
+        {{movie.description}}
+      </div>
+      <h3 class="cast">Cast</h3>
+
+      <ul *ngFor="let actor of movie.actors;">
+        <li>{{actor}}</li>
+      </ul>
+
+      <div class="reviews-section">
+        <h1>Reviews</h1>
+        <div class="card" *ngFor="let review of movie.reviews; let i = index;">
+          <div class="card-body">
+            <h5 class="card-title">By {{review.username}}</h5>
+            <p class="card-text">{{review.comment}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <ng-container *ngFor="let star of ratings[i]">
+                  <i class="bi bi-star-fill rating-stars"></i>
+                </ng-container>
+              </div>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteReviewModal" [hidden]="review.username != currentUser" (click)="setReviewToDelete(review)">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-review-movie [reviewsForm]="reviewsForm"></app-review-movie>
+      <button class="btn btn-primary add-review" (click)="addReview()" [disabled]="!reviewsForm.valid">Add</button>
+
+    </div>
+  </ng-container>
+</div>
+
+
+<div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteReviewModalLabel">Deleting review</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{userMessage}}
+      </div>
+      <div class="modal-footer justify-content-start">
+        <button type="button" class="btn btn-success" (click)="deleteReview()" [hidden]="!reviewToBeDeleted"><i class="bi bi-check-lg"></i> Yes</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" [hidden]="!reviewToBeDeleted"><i class="bi bi-x-lg"></i> No</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" [hidden]="reviewToBeDeleted">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+.addmovie-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.addmovie-form {
+    padding: 30px;
+    padding-bottom: 20px;
+    width: 700px;
+}
+
+.text-danger {
+    margin-top: 5px;
+}
+
+.loading-spinner {
+    border-width: 0.4rem;
+    width: 6rem; 
+    height: 6rem;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+    .addmovie-container {
+        margin-top: 20px;
+    }
+
+    .addmovie-form {
+        width: 90%;
+    }
+
+    .card {
+        border: none;
+    }
+}

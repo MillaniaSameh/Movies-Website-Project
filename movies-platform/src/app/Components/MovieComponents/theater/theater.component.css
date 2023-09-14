@@ -1,0 +1,41 @@
+.search-bar {
+    margin: 5vh 5vw;
+    margin-top: 6vh;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-form {
+    width: 50%;
+}
+
+.theater-container {
+    margin: 5vh 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.no-content-container {
+    text-align: center;
+}
+
+.spinner-border {
+    border-width: 0.4rem;
+    width: 6rem; 
+    height: 6rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 700px) {
+    .search-form {
+        width: 75%;
+    }
+}

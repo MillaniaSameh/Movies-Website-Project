@@ -1,0 +1,9 @@
+<div class="card" routerLink="/Movie/{{movie.movieId}}">
+  <img src="assets/images/{{movie.poster}}" class="card-img-top img-poster" alt={{movie.title}}>
+  <div class="card-body">
+    <h5 class="card-title">{{movie.title}}</h5>
+    <p class="card-text mb-0 fw-semibold">Cast</p>
+    <p class="card-text">{{movie.actors.slice(0,3).join(", ")}}<span *ngIf="movie.actors.length > 3">, ...</span></p>
+    <p class="card-text"><span class="fw-semibold">Year:</span> {{movie.releaseYear}}</p>
+  </div>
+</div>
